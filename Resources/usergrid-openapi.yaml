@@ -1,0 +1,162 @@
+swagger: '2.0'
+info:
+  description: 'This is a sample payments service.  You can find out more about OpenAPI spec at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).'
+  version: 1.0.0
+  title: Payments
+  contact:
+    name: Apigee
+    url: 'https://pages.apigee.com/request-support-general.html'
+    email: support@apigee.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: api.usergrid.com
+basePath: /demo30/finance
+tags:
+  - name: payments
+    description: API enabling payment services
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+  - https
+paths:
+  '/payment/{payment-uuid}':
+    get:
+      summary: Get payment by uuid
+      description: This method will get a payment
+      operationId: getPaymentById
+      parameters:
+        - name: payment-uuid
+          in: path
+          required: true
+          description: ID of a `payment`
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/payment'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    put:
+      summary: Update payment by uuid
+      description: This method will update a payment
+      operationId: updatePaymentById
+      parameters:
+        - name: body
+          description: A new `payment`
+          in: body
+          schema:
+            $ref: '#/definitions/payment'
+        - name: payment-uuid
+          in: path
+          required: true
+          description: ID of a `payment`
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/payment'
+    delete:
+      summary: Delete payment by uuid
+      description: This method will delete a payment
+      operationId: deletePaymentById
+      parameters:
+        - name: payment-uuid
+          in: path
+          required: true
+          description: ID of a `payment`
+          type: string
+      responses:
+        '200':
+          description: OK
+  /payment:
+    post:
+      summary: Make a payment
+      description: This method will make a payment
+      operationId: makePayment
+      parameters:
+        - name: body
+          description: A new `payment`
+          in: body
+          schema:
+            $ref: '#/definitions/payment'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/payment'
+    get:
+      summary: Get all payments
+      description: This method will reteive all payments
+      operationId: getPayments
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/payment'
+definitions:
+  payment:
+    type: object
+    properties:
+      uuid:
+        type: string
+      type:
+        type: string
+      created:
+        type: integer
+      modified:
+        type: integer
+      account_uuid:
+        type: string
+      amount:
+        type: string
+      metadata:
+        type: object
+        properties:
+          path:
+            type: string
+      sourceType:
+        type: string
+      location:
+        type: object
+        properties:
+          latitude:
+            type: number
+          longitude:
+            type: number
+      recipientname:
+        type: string
+      source:
+        type: string
+      transactiondate:
+        type: string
+      transactionstatus:
+        type: string
+      user_uuid:
+        type: string
+responses:
+  '400':
+    description: Bad Request. Client request in error
+    schema: {}
+  '401':
+    description: Unauthorized. Client authentication token missing from request
+    schema: {}
+  '403':
+    description: Forbidden. Client authentication token does not permit this method on this resource
+    schema: {}
+  '404':
+    description: Not Found. Resource not found
+    schema: {}

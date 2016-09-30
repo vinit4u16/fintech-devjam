@@ -1,0 +1,190 @@
+{
+	"variables": [],
+	"info": {
+		"name": "DevJam-Financial",
+		"_postman_id": "b337bd72-5841-48ed-6d68-38e5a90cfaf1",
+		"description": "This is a sample payments service.  You can find out more about OpenAPI spec at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "oauth",
+			"description": "",
+			"item": [
+				{
+					"name": "/POST OAuth Token - Client Cred",
+					"request": {
+						"url": "https://demo37-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Zk45Zm9raFNlUUxVY1dHNFdvWW1HdWlhRTRXWjFKdHc6VFR1akZrZGlMMjhpOGpvcg==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"description": "Folder for payment",
+			"item": [
+				{
+					"name": "/GET payments",
+					"request": {
+						"url": "https://demo37-test.apigee.net/v1/ap_payment/payment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This method will reteive all payments"
+					},
+					"response": []
+				},
+				{
+					"name": "/GET payment (by uuid)",
+					"request": {
+						"url": {
+							"raw": "https://demo37-test.apigee.net/v1/ap_payment/payment/:payment-uuid",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"demo37-test",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"v1",
+								"ap_payment",
+								"payment",
+								":payment-uuid"
+							],
+							"variable": [
+								{
+									"value": "{{payment-uuid}}",
+									"id": "payment-uuid"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This method will get a payment"
+					},
+					"response": []
+				},
+				{
+					"name": "/PUT payment (by uuid)",
+					"request": {
+						"url": {
+							"raw": "https://demo37-test.apigee.net/v1/ap_payment/payment/:payment-uuid",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"demo37-test",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"v1",
+								"ap_payment",
+								"payment",
+								":payment-uuid"
+							],
+							"variable": [
+								{
+									"value": "{{payment-uuid}}",
+									"id": "payment-uuid"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "A new `payment`"
+						},
+						"description": "This method will update a payment"
+					},
+					"response": []
+				},
+				{
+					"name": "/DELETE payment (by uuid)",
+					"request": {
+						"url": {
+							"raw": "https://demo37-test.apigee.net/v1/ap_payment/payment/:payment-uuid",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"demo37-test",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"v1",
+								"ap_payment",
+								"payment",
+								":payment-uuid"
+							],
+							"variable": [
+								{
+									"value": "{{payment-uuid}}",
+									"id": "payment-uuid"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This method will delete a payment"
+					},
+					"response": []
+				},
+				{
+					"name": "/POST payment",
+					"request": {
+						"url": "https://demo37-test.apigee.net/v1/ap_payment/payment",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "A new `payment`"
+						},
+						"description": "This method will make a payment"
+					},
+					"response": []
+				},
+				{
+					"name": "/GET payments (by zipcode)",
+					"request": {
+						"url": "https://demo37-test.apigee.net/v2/ap_payment/payment?zipcode=30004&radius=100",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This method will reteive all payments within a given radius of a zip code"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
